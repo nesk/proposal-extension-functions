@@ -21,7 +21,7 @@ function countWords() {
 
 Extension functions are basically simple: if a function is in the current scope, and you call it with a receiver, then it acts as an extension function.
 
-This is potentially dangerous when the scope is too broad, it could accidentaly make calls to functions available in the global scope.
+This is potentially dangerous when the scope is too broad, it could accidentaly make calls to functions available in the global scope. This is why this feature is limited to modules.
 
 #### Global functions can't be extension functions
 
