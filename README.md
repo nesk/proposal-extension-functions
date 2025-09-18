@@ -39,9 +39,11 @@ It also means that, even in a module, a global function cannot be used as an ext
 </script>
 ```
 
-### Extension functions are normal functions, they only differ on call
+### Extension functions are normal functions
 
-We can already do `someMethod.bind(obj)` everywhere, this proposal is essentially a syntactic sugar.
+An extension function is a normal function but called with a receiver.
+
+This is something we can already do by using `Function.prototype.bind()`, `Function.prototype.call()` or `Function.prototype.apply()`, this proposal is essentially a syntactic sugar.
 
 ### Extension functions cannot override class or object properties
 
