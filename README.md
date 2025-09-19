@@ -144,7 +144,7 @@ const someIndex = 2;
 
 ### This extension syntax can only call functions
 
-Binding functions like done in [tc39/proposal-bind-operator](https://github.com/tc39/proposal-bind-operator) is out of scope. The extension syntax requires parentheses after the function name, otherwise it will simply retrieve the value of the property with the same name.
+Binding functions like suggested in [tc39/proposal-bind-operator](https://github.com/tc39/proposal-bind-operator) is out of scope. The extension syntax requires parentheses after the function name, otherwise it will simply retrieve the value of the property with the same name.
 
 ```js
 function countWords() {
