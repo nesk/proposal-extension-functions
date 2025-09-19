@@ -69,6 +69,14 @@ An extension function is a normal function but called with a receiver.
 
 This is something we can already do by using `Function.prototype.bind()`, `Function.prototype.call()` or `Function.prototype.apply()`, this proposal is essentially a syntactic sugar.
 
+```js
+// This code
+"Hello, World!".countWords();
+
+// Is syntactic sugar for
+countWords.call("Hello, World!");
+```
+
 ### Extension functions cannot override class or object properties
 
 ```js
