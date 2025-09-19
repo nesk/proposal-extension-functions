@@ -155,3 +155,11 @@ const bindedCountWords = 'Hello, World!'.countWords;
 bindedCountWords();
 // Throws: Uncaught TypeError: bindedCountWords is not a function
 ```
+
+## Concerns to discuss
+
+### Bundlers
+
+Bundlers put all the modules code into a single output file. If the latter isn't a module—and it generally isn't—then the extension functions will never be called.
+
+A solution would be for bundlers to detect extension functions usage and add a simple `export {}` at the end of the output file. This implies that the output file is properly referenced in browsers with a `<script type="module">` or in alternative runtimes with a `.mjs` extension.
