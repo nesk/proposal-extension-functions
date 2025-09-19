@@ -16,7 +16,7 @@ The ECMAScript community has been searching for a lot of ways to write code that
 
 ## Proposal
 
-Extension functions are a simple solution to this and are already implemented in multiple other languages like Kotlin, Swift and C#.
+Extension functions are a simple solution to this and are already implemented in multiple other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ```js
 function countWords() {
@@ -29,7 +29,7 @@ function countWords() {
 
 There is no need to create new functions if a library author wants to add support for extension functions to its already existing library:
 
-```
+```js
 function countWords(str) {
   const self = this === globalThis ? str : this;
   return self.split(/\s/).length;
