@@ -54,7 +54,8 @@ function toSorted() {
 
 [1, 30, 4, 21, 100000].toSorted();
 // Returns: [1, 100000, 21, 30, 4]
-// Reason is `Array.prototype.toSorted()` has been called instead of the extension function
+// If our custom function had been called, it would have return [1, 4, 21, 30, 100000]
+// Since `Array.prototype.toSorted()` already exists, it has been called instead
 ```
 
 ```js
