@@ -1,6 +1,18 @@
 ## Problem
 
-People used to extend the prototype but this isn't recommended anymore, now what?
+Applying multiple transformations to a value produces code that isn't easy to read in ECMAScript:
+
+```js
+some(custom(transformations(on(string))))
+```
+
+This code doesn't execute like a human would read it and actually runs like:
+
+```
+string -> on -> transformations -> custom -> some
+```
+
+The ECMAScript community has been searching for a lot of ways to write code that's easy to read, multiple proposals have been submitted.
 
 ## Proposal
 
@@ -13,6 +25,18 @@ function countWords() {
 
 "Hello, World!".countWords();
 // Returns: 2
+```
+
+There is no need to create new functions if a library author wants to add support for extension functions to its already existing library:
+
+```
+function countWords(str) {
+  const self = this === globalThis ? str : this;
+  return self.split(/\s/).length;
+}
+
+countWords("Hello, World!"); // Old API is still supported
+"Hello, World!".countWords(); // Extension API works by using the same function
 ```
 
 ## Specification details
