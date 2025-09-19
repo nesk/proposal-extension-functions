@@ -6,7 +6,7 @@ Applying multiple transformations to a value produces code that isn't easy to re
 some(custom(transformations(on(string))))
 ```
 
-This code doesn't execute like a human would read it and actually runs like:
+This code doesn't execute like a human would read it and actually runs in this order:
 
 ```
 string -> on -> transformations -> custom -> some
