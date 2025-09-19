@@ -97,3 +97,15 @@ function countWords() {
 "Hello, World!"['countWords']();
 // Throws: Uncaught TypeError: "Hello, World!".countWords is not a function
 ```
+
+### Only functions can be used as extensions
+
+Getter and setters are out of scope for this proposal.
+
+Only variables with `typeof === 'function'` can be used as extensions:
+
+```js
+const someIndex = 2;
+['a', 'b', 'c'].someIndex
+// Returns: undefined
+```
