@@ -141,3 +141,17 @@ const someIndex = 2;
 ['a', 'b', 'c'].someIndex
 // Returns: undefined
 ```
+
+### This extension syntax can only call functions
+
+Binding functions like done in [tc39/proposal-bind-operator](https://github.com/tc39/proposal-bind-operator) is out of scope. The extension syntax requires parentheses after the function name, otherwise it will simply retrieve the value of the property with the same name.
+
+```js
+function countWords() {
+  return this.split(/\s/).length;
+}
+
+const bindedCountWords = "Hello, World!".countWords;
+bindedCountWords();
+// Throws: Uncaught TypeError: bindedCountWords is not a function
+```
