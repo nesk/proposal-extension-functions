@@ -23,7 +23,7 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-"Hello, World!".countWords();
+'Hello, World!'.countWords();
 // Returns: 2
 ```
 
@@ -35,8 +35,8 @@ function countWords(str) {
   return self.split(/\s/).length;
 }
 
-countWords("Hello, World!"); // Old API is still supported
-"Hello, World!".countWords(); // Extension API works by using the same function
+countWords('Hello, World!'); // Old API is still supported
+'Hello, World!'.countWords(); // Extension API works by using the same function
 ```
 
 ## Specification details
@@ -58,8 +58,8 @@ It also means that, even in a module, a global function cannot be used as an ext
   }
 </script>
 <script type="module">
-  "Hello, World!".countWords();
-  // Throws: Uncaught TypeError: "Hello, World!".countWords is not a function
+  'Hello, World!'.countWords();
+  // Throws: Uncaught TypeError: 'Hello, World!'.countWords is not a function
 </script>
 ```
 
@@ -71,10 +71,10 @@ This is something we can already do by using `Function.prototype.bind()`, `Funct
 
 ```js
 // This code
-"Hello, World!".countWords();
+'Hello, World!'.countWords();
 
 // Is syntactic sugar for
-countWords.call("Hello, World!");
+countWords.call('Hello, World!');
 ```
 
 ### Extension functions cannot override class or object properties
@@ -93,16 +93,16 @@ function toSorted() {
 ```js
 const greetings = {
   hello() {
-    return "Hello, World!";
+    return 'Hello, World!';
   }
 }
 
 function hello() {
-  return "Hello, dear reader.";
+  return 'Hello, dear reader.';
 }
 
 greetings.hello();
-// Returns: "Hello, World!"
+// Returns: 'Hello, World!'
 ```
 
 Just like in [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/):
@@ -126,8 +126,8 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-"Hello, World!"['countWords']();
-// Throws: Uncaught TypeError: "Hello, World!".countWords is not a function
+'Hello, World!'['countWords']();
+// Throws: Uncaught TypeError: 'Hello, World!'.countWords is not a function
 ```
 
 ### Only functions can be used as extensions
@@ -151,7 +151,7 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-const bindedCountWords = "Hello, World!".countWords;
+const bindedCountWords = 'Hello, World!'.countWords;
 bindedCountWords();
 // Throws: Uncaught TypeError: bindedCountWords is not a function
 ```
