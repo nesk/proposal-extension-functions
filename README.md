@@ -23,7 +23,7 @@ The community has long been searching for solutions to write code that executes 
 - Submitting proposals for [extension functions](https://github.com/tc39/proposal-extensions), [this-binding syntax](https://github.com/tc39/proposal-bind-operator), [pipe operator](https://github.com/tc39/proposal-pipeline-operator).
 - Relying on transpilation step to extend the language, [like the bind operator plugin for Babel.](https://babeljs.io/docs/babel-plugin-proposal-function-bind)
 
-## Potential solution with extension functions
+## Extension functions
 
 Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) or [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
@@ -36,15 +36,71 @@ function countWords() {
 // Returns: 2
 ```
 
-Which would allow to write code that is easy to read from left to right:
+They would allow to write code that is easy to read from left to right, here's a demonstration based on the first example:
 
 ```js
 string.apply().some().custom().transformations()
 ```
 
-### How they can be used
+### What do they bring
 
-Roman Elizarov—ex-project lead for Kotlin—[wrote an article about "Extension-oriented design"](https://elizarov.medium.com/extension-oriented-design-13f4f27deaee). He explains how this feature helps developers to extend the language and write better
+Roman Elizarov—ex-project lead for Kotlin—[wrote an article about "Extension-oriented design"](https://elizarov.medium.com/extension-oriented-design-13f4f27deaee); he explains how this feature helps in extending the language for the developer needs:
+
+>You are stuck with a vocabulary of operations on a class that designers of the original library had in mind. It cannot be extended by you. […]
+>
+>Modern languages […] solve this issue by supporting extension methods. You can add domain-specific extensions to the classes you do not control, so that your own function could be called in a way that resembles a call of a built-in method […]
+
+He also argues how they can help architect your own classes by separating your core methods from the convenient ones, so your classes are easier to grasp.
+
+Extension functions have a lot of use cases:
+
+#### Write readable code with custom functions
+
+```js
+import { toURL, trimUTMParameters } from "./url-helpers";
+
+const userSubmittedURL = 'https://www.example.com/page?utm_content=buffercf3b2';
+
+userSubmittedURL
+  .toURL()
+  .trimUTMParameters()
+  .toString();
+// Returns: 'https://www.example.com/page'
+```
+
+#### Provide safe alternatives to static methods
+
+`Object.groupBy()` went from an instance method to a static one [due to web incompatibilities.](https://github.com/tc39/proposal-array-grouping?tab=readme-ov-file#why-static-methods)
+
+Extension functions would allow developers to create their own custom functions to wrap static methods, enabling chaining:
+
+```js
+import { mapValues } from "object-helpers";
+
+function groupBy(callbackFn) {
+  return Object.groupBy(this, callbackFn);
+}
+
+function toJSON() {
+  return JSON.stringify(this);
+}
+
+const inventory = [
+  { name: "asparagus", type: "vegetables", quantity: 9 },
+  { name: "bananas", type: "fruit", quantity: 5 },
+  { name: "goat", type: "meat", quantity: 23 },
+  { name: "cherries", type: "fruit", quantity: 12 },
+  { name: "fish", type: "meat", quantity: 22 },
+];
+
+inventory
+  .groupBy(item => item.type)
+  .mapValues(items => items.map(item => item.name))
+  .toJSON();
+// Returns: '{"vegetables":["asparagus"],"fruit":["bananas","cherries"],"meat":["goat","fish"]}'
+```
+
+#### Existing functions can easily be adapted
 
 There is no need to create new functions if a library author wants to add support for extension functions to its already existing library:
 
@@ -54,8 +110,11 @@ function countWords(str) {
   return self.split(/\s/).length;
 }
 
-countWords('Hello, World!'); // Old API is still supported
-'Hello, World!'.countWords(); // Extension API works by using the same function
+// Old API is still supported
+countWords('Hello, World!');
+
+// Extension API works by using the same function
+'Hello, World!'.countWords();
 ```
 
 ## Specification details
