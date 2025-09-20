@@ -7,13 +7,13 @@ Author: Johann Pardanaud
 Applying multiple transformations to a value produces code that isn't easy to read:
 
 ```js
-some(custom(transformations(on(string))))
+transformations(custom(some(apply(string))))
 ```
 
 This code doesn't execute like a human would read it and actually runs in this order:
 
 ```
-string -> on -> transformations -> custom -> some
+string -> apply -> some -> custom -> transformations
 ```
 
 The community has long been searching for solutions to write code that executes in the same order we read it as humains:
@@ -25,7 +25,7 @@ The community has long been searching for solutions to write code that executes 
 
 ## Potential solution with extension functions
 
-Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
+Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) or [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ```js
 function countWords() {
@@ -35,6 +35,16 @@ function countWords() {
 'Hello, World!'.countWords();
 // Returns: 2
 ```
+
+Which would allow to write code that is easy to read from left to right:
+
+```js
+string.apply().some().custom().transformations()
+```
+
+### How they can be used
+
+Roman Elizarov—ex-project lead for Kotlin—[wrote an article about "Extension-oriented design"](https://elizarov.medium.com/extension-oriented-design-13f4f27deaee). He explains how this feature helps developers to extend the language and write better
 
 There is no need to create new functions if a library author wants to add support for extension functions to its already existing library:
 
