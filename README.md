@@ -125,9 +125,11 @@ Extension functions are basically simple: if a function is in the current scope,
 
 This feature is limited to modules because it's potentially dangerous when the scope is too broad, it could accidentaly make calls to functions available in the global scope.
 
-#### Global functions can't be extension functions
+Also, by limiting the scope, developers are able to better understand if a call is made to an extension function or to a member function.
 
-It also means that, even in a module, a global function cannot be used as an extension function:
+### Global functions can't be extension functions
+
+Since extension functions are limited to modules to avoid scope pollution, it also means that, even in a module, a global function cannot be used as an extension function:
 
 ```html
 <script>
