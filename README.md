@@ -7,7 +7,7 @@ Author: Johann Pardanaud
 Applying multiple transformations to a value produces code that isn't easy to read:
 
 ```js
-transformations(custom(some(apply(string))))
+transformations(custom(some(apply(string))));
 ```
 
 This code doesn't execute like a human would read it and actually runs in this order:
@@ -32,14 +32,14 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-'Hello, World!'.countWords();
+"Hello, World!".countWords();
 // Returns: 2
 ```
 
 They would allow to write code that is easy to read from left to right, here's a demonstration based on the first example:
 
 ```js
-string.apply().some().custom().transformations()
+string.apply().some().custom().transformations();
 ```
 
 They also are really appreciated in the community, based on [the votes and comments of an old TypeScript issue that wanted to introduce them.](https://github.com/microsoft/TypeScript/issues/9)
@@ -48,9 +48,9 @@ They also are really appreciated in the community, based on [the votes and comme
 
 Roman Elizarov—ex-project lead for Kotlin—[wrote an article about "Extension-oriented design"](https://elizarov.medium.com/extension-oriented-design-13f4f27deaee); he explains how this feature helps in extending the language for the developer needs:
 
->You are stuck with a vocabulary of operations on a class that designers of the original library had in mind. It cannot be extended by you. […]
+> You are stuck with a vocabulary of operations on a class that designers of the original library had in mind. It cannot be extended by you. […]
 >
->Modern languages […] solve this issue by supporting extension methods. You can add domain-specific extensions to the classes you do not control, so that your own function could be called in a way that resembles a call of a built-in method […]
+> Modern languages […] solve this issue by supporting extension methods. You can add domain-specific extensions to the classes you do not control, so that your own function could be called in a way that resembles a call of a built-in method […]
 
 He also argues how they can help architect your own classes by separating your core methods from the convenient ones, so your classes are easier to grasp.
 
@@ -61,13 +61,13 @@ Extension functions have a lot of use cases:
 ```js
 import { toURL, trimUTMParameters } from "./url-helpers";
 
-const userSubmittedURL = 'https://www.example.com/page?utm_content=buffercf3b2';
+const userSubmittedURL = "https://www.example.com/page?utm_content=buffercf3b2";
 
 userSubmittedURL
   .toURL()
   .trimUTMParameters()
   .toString();
-// Returns: 'https://www.example.com/page'
+// Returns: "https://www.example.com/page"
 ```
 
 #### Provide safe alternatives to static methods
@@ -113,10 +113,10 @@ function countWords(str) {
 }
 
 // Old API is still supported
-countWords('Hello, World!');
+countWords("Hello, World!");
 
 // Extension API works by using the same function
-'Hello, World!'.countWords();
+"Hello, World!".countWords();
 ```
 
 ## Specification details
@@ -140,7 +140,7 @@ Since extension functions are limited to modules to avoid scope pollution, it al
   }
 </script>
 <script type="module">
-  'Hello, World!'.countWords();
+  "Hello, World!".countWords();
   // Throws: Uncaught TypeError: 'Hello, World!'.countWords is not a function
 </script>
 ```
@@ -153,38 +153,37 @@ This is something we can already do by using `Function.prototype.bind()`, `Funct
 
 ```js
 // This code
-'Hello, World!'.countWords();
+"Hello, World!".countWords();
 
 // Is syntactic sugar for
-countWords.call('Hello, World!');
+countWords.call("Hello, World!");
 ```
 
 ### Extension functions cannot override class or object properties
 
 ```js
-function toSorted() {
-  return this.toSorted((a, b) => a - b);
+function toString() {
+  return "<REDACTED>";
 }
 
-[1, 30, 4, 21, 100000].toSorted();
-// Returns: [1, 100000, 21, 30, 4]
-// If our custom function had been called, it would have return [1, 4, 21, 30, 100000]
-// Since `Array.prototype.toSorted()` already exists, it has been called instead
+const password = "5iadCWgh";
+password.toString();
+// Returns: "5iadCWgh"
 ```
 
 ```js
 const greetings = {
   hello() {
-    return 'Hello, World!';
-  }
-}
+    return "Hello, World!";
+  },
+};
 
 function hello() {
-  return 'Hello, dear reader.';
+  return "Hello, dear reader.";
 }
 
 greetings.hello();
-// Returns: 'Hello, World!'
+// Returns: "Hello, World!"
 ```
 
 Just like in [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/):
@@ -199,6 +198,16 @@ and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/class
 
 > You can use extension members to extend a class or interface, but not to override behavior defined in a class. An extension member with the same name and signature as an interface or class members are never called.
 
+A solution is to rename the function, this can be done when importing for example:
+
+```js
+import { toString as toRedactedString } from "security-helpers";
+
+const password = "5iadCWgh";
+password.toRedactedString();
+// Returns: "<REDACTED>"
+```
+
 ### Extension functions cannot be called dynamically
 
 This is not possible:
@@ -208,7 +217,7 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-'Hello, World!'['countWords']();
+"Hello, World!"["countWords"]();
 // Throws: Uncaught TypeError: 'Hello, World!'.countWords is not a function
 ```
 
@@ -220,7 +229,7 @@ Only variables with `typeof === 'function'` can be used as extensions:
 
 ```js
 const someIndex = 2;
-['a', 'b', 'c'].someIndex
+["a", "b", "c"].someIndex;
 // Returns: undefined
 ```
 
@@ -229,9 +238,9 @@ const someIndex = 2;
 The goal of this proposal is to allow developers to write code that's easy to read, therefor, it is impossible to use nested properties as extension functions:
 
 ```js
-import * as helpers from "string-helpers"
+import * as helpers from "string-helpers";
 
-const str = 'Hello, World!';
+const str = "Hello, World!";
 str[helpers.countWords]();
 // Throws: Uncaught TypeError: [helpers.countWords] is not a function
 ```
@@ -247,7 +256,7 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
-const bindedCountWords = 'Hello, World!'.countWords;
+const bindedCountWords = "Hello, World!".countWords;
 bindedCountWords();
 // Throws: Uncaught TypeError: bindedCountWords is not a function
 ```
