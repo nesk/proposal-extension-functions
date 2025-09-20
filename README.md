@@ -212,7 +212,7 @@ function countWords() {
 
 ### Only functions can be used as extensions
 
-Getter and setters are out of scope for this proposal.
+Getter and setters are out of scope for this proposal, mainly because they aren't available at top-level.
 
 Only variables with `typeof === 'function'` can be used as extensions:
 
@@ -221,6 +221,20 @@ const someIndex = 2;
 ['a', 'b', 'c'].someIndex
 // Returns: undefined
 ```
+
+### Nested properties can't be used as extension functions
+
+The goal of this proposal is to allow developers to write code that's easy to read, therefor, it is impossible to use nested properties as extension functions:
+
+```js
+import * as helpers from "string-helpers"
+
+const str = 'Hello, World!';
+str[helpers.countWords]();
+// Throws: Uncaught TypeError: [helpers.countWords] is not a function
+```
+
+Instead, the function should be extracted to a variable before using it as an extension.
 
 ### This extension syntax can only call functions
 
