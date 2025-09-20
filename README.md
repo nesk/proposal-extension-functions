@@ -42,6 +42,8 @@ They would allow to write code that is easy to read from left to right, here's a
 string.apply().some().custom().transformations()
 ```
 
+They also are really appreciated in the community, based on [the votes and comments of an old TypeScript issue that wanted to introduce them.](https://github.com/microsoft/TypeScript/issues/9)
+
 ### What do they bring
 
 Roman Elizarov—ex-project lead for Kotlin—[wrote an article about "Extension-oriented design"](https://elizarov.medium.com/extension-oriented-design-13f4f27deaee); he explains how this feature helps in extending the language for the developer needs:
