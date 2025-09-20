@@ -23,9 +23,9 @@ The community has long been searching for solutions to write code that executes 
 - Submitting proposals for [extension functions](https://github.com/tc39/proposal-extensions), [this-binding syntax](https://github.com/tc39/proposal-bind-operator), [pipe operator](https://github.com/tc39/proposal-pipeline-operator).
 - Relying on transpilation step to extend the language, [like the bind operator plugin for Babel.](https://babeljs.io/docs/babel-plugin-proposal-function-bind)
 
-## Proposal
+## Potential solution with extension functions
 
-Extension functions are a simple solution to this and are already implemented in multiple other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
+Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) and [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ```js
 function countWords() {
