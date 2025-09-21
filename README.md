@@ -73,7 +73,7 @@ userSubmittedURL
 
 #### Provide safe alternatives to static methods
 
-`Object.groupBy()` went from an instance method to a static one [due to web incompatibilities.](https://github.com/tc39/proposal-array-grouping?tab=readme-ov-file#why-static-methods)
+Array grouping went from an instance method—`Array.prototype.groupBy()`—to a static one—`Object.groupBy()`—[due to web incompatibilities.](https://github.com/tc39/proposal-array-grouping?tab=readme-ov-file#why-static-methods)
 
 Extension functions would allow developers to create their own custom functions to wrap static methods, enabling chaining:
 
