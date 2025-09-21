@@ -25,7 +25,7 @@ The community has long been searching for solutions to write code that executes 
 
 ## Extension functions
 
-Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) or [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
+Extension functions are a solution to this and already implemented in many other languages like [Kotlin](https://kotlinlang.org/docs/extensions.html), [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/) or [C#](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ```js
 function countWords() {
@@ -186,7 +186,7 @@ greetings.hello();
 // Returns: "Hello, World!"
 ```
 
-Just like in [Kotlin](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/extensions/):
+Just like in [Kotlin](https://kotlinlang.org/docs/extensions.html):
 
 > If a class has a member function, and an extension function is defined which has the same receiver type, the same name, and is applicable to given arguments, the **member always wins.**
 
