@@ -32,6 +32,7 @@ function countWords() {
   return this.split(/\s/).length;
 }
 
+// Any function within the current scope can be called with a receiver
 "Hello, World!".countWords();
 // Returns: 2
 ```
