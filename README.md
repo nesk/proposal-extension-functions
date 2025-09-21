@@ -37,7 +37,7 @@ function countWords() {
 // Returns: 2
 ```
 
-They would allow to write code that is easy to read from left to right, here's a demonstration based on the first example:
+They allow to write code that is easy to read from left to right, here's a demonstration based on the first example:
 
 ```js
 string.apply().some().custom().transformations();
@@ -62,13 +62,13 @@ Extension functions have a lot of use cases:
 ```js
 import { toURL, trimUTMParameters } from "./url-helpers";
 
-const userSubmittedURL = "https://www.example.com/page?utm_content=buffercf3b2";
+const userSubmittedURL = "https://www.example.com/items?page=2&utm_content=buffercf3b2";
 
 userSubmittedURL
   .toURL()
   .trimUTMParameters()
   .toString();
-// Returns: "https://www.example.com/page"
+// Returns: "https://www.example.com/items?page=2"
 ```
 
 #### Provide safe alternatives to static methods
