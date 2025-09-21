@@ -16,7 +16,7 @@ This code doesn't execute like a human would read it and actually runs in this o
 string -> apply -> some -> custom -> transformations
 ```
 
-The community has long been searching for solutions to write code that executes in the same order we read it as humains:
+The community has long been searching for solutions to write code that executes in the same order we read it as humans:
 
 - Extending the prototype of native objects—[Mootools](https://mootools.net/core/docs/1.6.0/Class/Class#Class:implement) and other libraries did it—but is now deemed unfit due to prototype pollution.
 - Providing wrappers that allow to chain methods, [like Lodash's `_.chain()` method.](https://lodash.com/docs/4.17.15#chain)
