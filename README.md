@@ -4,7 +4,7 @@ Author: Johann Pardanaud
 
 TODO:
 
-- Generic array methods could be used as extension functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods
+- Generic array methods could be used as extension functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods (e.g. `Array.prototype.slice.call(document.querySelectorAll('div'), 2, 3)`)
 
 ## Problem
 
