@@ -2,6 +2,10 @@
 
 Author: Johann Pardanaud
 
+TODO:
+
+- Generic array methods could be used as extension functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods
+
 ## Problem
 
 Applying multiple transformations to a value produces code that isn't easy to read:
