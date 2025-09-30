@@ -2,10 +2,6 @@
 
 Author: Johann Pardanaud
 
-TODO:
-
-- Generic array methods could be used as extension functions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods (e.g. `Array.prototype.slice.call(document.querySelectorAll('div'), 2, 3)`)
-
 ## Problem
 
 Applying multiple transformations to a value produces code that isn't easy to read:
@@ -286,3 +282,9 @@ Bundlers aggregate the modules into a single output file. If the latter isn't a 
 A solution would be for bundlers to detect extension functions usage and add a simple `export {}` at the end of the output file. This implies that the output file is properly referenced in browsers with a `<script type="module">` or with an `.mjs` extension in alternative runtimes like Node.js.
 
 Maybe limiting extension functions to modules is too conservative?
+
+## Additional topics to add to the proposal
+
+- [Generic array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods) could be used as extension functions
+  - From: `Array.prototype.slice.call(document.querySelectorAll('div'), 2)`
+  - To: `const { slice } = Array.prototype; document.querySelectorAll('div').slice(2)`
