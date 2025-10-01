@@ -288,3 +288,4 @@ Maybe limiting extension functions to modules is too conservative?
 - [Generic array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#generic_array_methods) could be used as extension functions
   - From: `Array.prototype.slice.call(document.querySelectorAll('div'), 2)`
   - To: `const { slice } = Array.prototype; document.querySelectorAll('div').slice(2)`
+- [Optional chaining behaviors should be explained](https://es.discourse.group/t/reshaping-the-extensions-proposal/2439/10)
